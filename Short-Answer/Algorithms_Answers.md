@@ -2,14 +2,16 @@
 
 ## Exercise I
 
-a)
+a) O(n)
 
 
 b)
 
 
-c)
+c) O(c^n)
 
 ## Exercise II
+
+To solve this problem I would use iterative binary search which has O(log n) time complexity.
 
 

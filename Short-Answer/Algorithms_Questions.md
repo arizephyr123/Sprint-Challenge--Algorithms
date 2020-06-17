@@ -18,12 +18,12 @@ b)  sum = 0
     for i in range(n):  # O(n)
       j = 1             # O(1)
       while j < n:      # O(n) --> max, less if n < 1
-        j *= 2          # O(1) --> single calculation/reassignment. Does not reduce n because it is reset to 1 for each i in range n 
+        j *= 2          # O(log n) --> Each pass of while loop reduces n by a factor of 2. Does not reset to 1 for each i in range n because while loop finishes before next i in range
         sum += 1        # O(1) --> single calculation/reassignment
                         #  |for......|while
-                        # O(n * (1 + n * (1 + 1))) --> remove constants
-                        # O(n * (1 + 2n)) --> remove all but worst case operation
-                        # O(n^2)
+                        # O(n * (1 + n * (log n + 1))) --> remove constants
+                        # O(n * (log n)) --> remove all but worst case operation
+                        # O(n log n)
 ```
 
 ```
@@ -48,22 +48,25 @@ To solve this problem I would use iterative binary search which has O(log n) tim
 
 Pseudocode:
 
-# track lowest floor that breaks the egg
 
 def find_f(n):
-    lowest = 0
-    mid = n // 2
-    high_pointer = n
-    low_pointer = 0
-   
     # create array of floors 
     floors = [] * range(n)          # O(n)
+
+    # track lowest floor that breaks the egg
+    lowest = 0
+
+    # set  initial pointers for array
+    mid = n // 2
+    high = n
+    low = 0
 
     throw egg from mid floor:       #O(1)
     if breaks:                      #O(1)
         lowest == mid               #O(1)
-        high_pointer = mid          #O(1)
-        
+        high = mid -1               #O(1)
+        find_f(mid)                 
+
 
     
     
